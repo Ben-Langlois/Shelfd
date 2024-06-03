@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+
+const Header = () => {
+  return(
+    <header className='flex justify-center items-center h-16 gap-x-6'>
+      <h1 class='font-bold text-2xl'>Shelfd</h1>
+      <input type="text" name="search" class='w-3/6 rounded outline outline-slate-400 p-1 text-center' placeholder='Search Books, Authors, Genres etc'/>
+      <PersonOutlineIcon />
+      <PeopleOutlineIcon />
+    </header>
+  )
+}
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
     </div>
   );
 }
