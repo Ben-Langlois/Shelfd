@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'display': ['Oswald'],
+      'sans': ['"Source Serif 4"'],
+    }
   },
   plugins: [],
 }
