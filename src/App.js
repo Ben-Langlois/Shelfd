@@ -46,9 +46,9 @@ const Landing = () => {
         <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
       
       </div>
-      <div className='float-right w-2/4 content-center text-left p-3 m-6 border-400 border-l'> {/* login/register buttons (that lead to form) */}
-        <h1 className='text-5xl font-semibold font-display'>Join the tens of other readers sharing and discussing their favourite books</h1>
-        <div id='form-selector' className='flex flex-row gap-4 pt-4'>
+      <div className='float-right w-2/4 content-center text-left p-6 m-6 border-400 border-l'> {/* login/register buttons (that lead to form) */}
+        <h1 className='text-5xl font-semibold font-display'>Discover, Discuss, and Track your next reads along tens of other users</h1>
+        <div id='form-selector' className='flex flex-row gap-4 pt-6'>
           <Button size='large'>Login</Button>          
           <Button size='large' variant="outlined">Sign Up</Button>        
         </div>
