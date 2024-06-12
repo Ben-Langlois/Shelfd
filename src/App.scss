@@ -23,11 +23,50 @@
   'opsz' 24
 }
 
-@keyframes infinite-scroll {
+#primary{
+  animation: infinite-scroll-primary 50s linear infinite;
+}
+
+#secondary{
+  animation: infinite-scroll-secondary 50s linear infinite;
+}
+
+#primary:hover,
+#primary:hover~#secondary {
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+#secondary:hover {
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+
+#scroll-container:hover>#primary:not(:hover) {
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+@keyframes infinite-scroll-primary {
   0% {
-    top: 100%;
+    top: 0%;
   }
   100%{
-    top: -100%;
+    top: -115%;
+  }
+}
+@keyframes infinite-scroll-secondary {
+  0% {
+    top: 115%;
+  }
+  100%{
+    top: 0%;
   }
 }

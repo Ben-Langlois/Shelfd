@@ -6,9 +6,7 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {},
-      animation: {
-        infinitescroll: 'infinite-scroll 3s linear infinite',
-      }
+      animation: {}
     },
     fontFamily: {
       'display': ['Oswald'],

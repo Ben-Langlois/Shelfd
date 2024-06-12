@@ -9,77 +9,69 @@ const toggleForm = (form) => {
   $('#signup').toggleClass('hidden');
 }
 
-/*
-  figuring out tailwind animation and animation delay with infinite-scroll animation
+/* Currently
+- making array of book divs w/ bookStyle as classes, so there arent a bajillion ind divs in primary and secondary
 */
+
+const bookStyle = 'outline outline-red-400 rounded w-1/6 h-1/5';
 
 const Landing = () => {
   return(
     <div id='landing' className='flex flex-auto p-6'>
-      <div id='grid-container' className='h-full w-2/4'>
-        <div id='primary' className='grid grid-cols-6 grid-rows-5 gap-6 h-full'> {/* grid of books, maybe 'featured' books? */}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
+      <div id='scroll-container' className='flex flex-col relative h-full w-2/4 pt-1 overflow-hidden justify-center content-center'>
+        <div id='primary' className='flex flex-wrap absolute top-0 right-0 h-full justify-around gap-6 mt-3'> {/* grid of books, maybe 'featured' books? */}
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
         </div>
-        <div id='secondary' className='grid grid-cols-6 grid-rows-5 gap-6 h-full my-6'> {/* grid of books, maybe 'featured' books? */}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
-          <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
+        <div id='secondary' className='flex flex-wrap absolute top-full right-0 h-full justify-around gap-6 mt-3'> {/* grid of books, maybe 'featured' books? */}
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
+          <div className={bookStyle} >&nbsp;</div>  
         </div>
       </div>
 
