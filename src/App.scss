@@ -22,3 +22,12 @@
   'GRAD' 0,
   'opsz' 24
 }
+
+@keyframes infinite-scroll {
+  0% {
+    top: 100%;
+  }
+  100%{
+    top: -100%;
+  }
+}

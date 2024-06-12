@@ -1,5 +1,5 @@
 import './App.scss';
-import $, { event } from 'jquery';
+import $ from 'jquery';
 import Header from './header.js';
 import Button from '@mui/material/Button';
 import { TextField } from '@mui/material';
@@ -9,11 +9,15 @@ const toggleForm = (form) => {
   $('#signup').toggleClass('hidden');
 }
 
+/*
+  figuring out tailwind animation and animation delay with infinite-scroll animation
+*/
+
 const Landing = () => {
   return(
     <div id='landing' className='flex flex-auto p-6'>
-      <div id='grid-container' className='h-full w-2/4 my-6'>
-        <div className='grid grid-cols-6 grid-rows-5 gap-6 h-full'> {/* grid of books, maybe 'featured' books? */}
+      <div id='grid-container' className='h-full w-2/4'>
+        <div id='primary' className='grid grid-cols-6 grid-rows-5 gap-6 h-full'> {/* grid of books, maybe 'featured' books? */}
           <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
           <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
           <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
@@ -45,7 +49,7 @@ const Landing = () => {
           <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
           <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
         </div>
-        <div className='grid grid-cols-6 grid-rows-5 gap-6 h-full mt-6'> {/* grid of books, maybe 'featured' books? */}
+        <div id='secondary' className='grid grid-cols-6 grid-rows-5 gap-6 h-full my-6'> {/* grid of books, maybe 'featured' books? */}
           <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
           <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
           <div className='outline outline-red-400 rounded'>&nbsp;</div>  {/* Will replace will API or something, just divs to figure out css*/}
