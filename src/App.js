@@ -1,8 +1,11 @@
 import './App.scss';
 import $, { event } from 'jquery';
+import {useState, useEfffect} from 'react';
 import Header from './header.js';
 import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton } from '@mui/material';
 
 const toggleForm = (form) => {
   $('#login').toggleClass('hidden');
@@ -10,59 +13,50 @@ const toggleForm = (form) => {
 }
 
 /* Currently
-- making array of book divs w/ bookStyle as classes, so there arent a bajillion ind divs in primary and secondary
+  - adding book covers to display in infinite scroll
+  - having text inputs get error prop instead of changing border color to red, which cuts through label
+  - email validation
+  - strong password 
+  - clearForm()
+  - fix flex row mishap for infinite scroll when window is resized
 */
 
 const Landing = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+
 
   const bookStyle = 'outline outline-red-400 rounded w-1/6 h-1/5';
 
-  const loginSubmit = (e) => {
+  const formSubmit = (form) => {
     // e.preventDefault();
     let valid = true;
-    let email = $('#login input#email');
-    let password = $('#login input#password');
+    let email = $(`#${form} input#email`);
+    let password = $(`#${form} input#password`);
 
     // email field validation
     if(!email.val()){
       email.addClass('outline outline-red-400 rounded');
       valid = false;
+    } else {
+      email.removeClass('outline outline-red-400 rounded'); 
     }
 
     // pass word field validation
     if(!password.val()){
       password.addClass('outline outline-red-400 rounded');
       valid = false;
+    } else {
+      password.removeClass('outline outline-red-400 rounded');
     }
     // backend validation
     if(valid){
-      // reset input styles
-      // this is where the backend will interact w front
-    }
-  }
-
-  const signupSubmit = (e) => {
-    // e.preventDefault();
-    let valid = true;
-    let email = $('#signup input#email');
-    let password = $('#signup input#password');
-
-    // email field validation
-    if(!email.val()){
-      email.addClass('outline outline-red-400 rounded');
-      valid = false;
-    }
-
-    // pass word field validation
-    if(!password.val()){
-      password.addClass('outline outline-red-400 rounded');
-      valid = false;
-    }
-
-    // backend validation
-    if(valid){
-      // reset input styles
-
       // this is where the backend will interact w front
     }
   }
@@ -134,21 +128,58 @@ const Landing = () => {
           <h1 className='text-5xl font-semibold font-display'>Discover, Discuss, and Track your next reads along tens of other users</h1>
         </div>
         <form id='login' className='flex flex-col flex-wrap gap-6'> {/* login form to display */}
-          <TextField id='email' required label="Email" variant="outlined" />
-          <TextField id='password' required label="Password" variant="outlined" />
-          {/* need show password option*/}
+          <TextField id='email' className='!font-sans' required label="Email" variant="outlined" />
+          {/* <TextField id='password' required label="Password" variant="outlined" /> */}
+          <FormControl  variant="outlined" required >
+            <InputLabel htmlFor="password-label">Password</InputLabel>
+            <OutlinedInput
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            />
+          </FormControl>
           <div id='buttons' className='flex gap-6 items-center'>
-            <Button size='large' className='h-1/4 w-1/4' variant="outlined" onClick={() => loginSubmit()}>Login</Button> 
+            <Button size='large' className='h-1/4 w-1/4' variant="outlined" onClick={() => formSubmit('login')}>Login</Button> 
             <Button className='h-1/4' variant="text" onClick={() => toggleForm()}>Dont have an account?</Button>            
           </div>
         </form>
         <form id='signup' className='hidden flex flex-col flex-wrap gap-6'> {/* signup form to display */}
           <TextField id='firstName' label="First Name" variant="outlined" />
           <TextField id='email' required label="Email" variant="outlined" />
-          <TextField id='password' required label="Password" variant="outlined" />
-          {/* need show password option*/}
+          <FormControl  variant="outlined" required >
+            <InputLabel htmlFor="password-label">Password</InputLabel>
+            <OutlinedInput
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            />
+          </FormControl>
           <div id='buttons' className='flex gap-6 items-center'>
-            <Button size='large' className='h-1/4 w-1/4' variant="outlined" onClick={() => signupSubmit()}>Sign Up</Button> 
+            <Button size='large' className='h-1/4 w-1/4' variant="outlined" onClick={() => formSubmit('signup')}>Sign Up</Button> 
             <Button className='h-1/4' variant="text" onClick={() => toggleForm()}>Back</Button>            
           </div>
         </form>      
