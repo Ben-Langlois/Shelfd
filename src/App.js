@@ -8,10 +8,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton } from '@mui/material';
 
 /* Currently
-  - adding book covers to display in infinite scroll
-  - email validation
-  - strong password 
-  - fix flex row mishap for infinite scroll when window is resized
+  - Landing
+    - adding book covers to display in infinite scroll
+    - email validation
+    - strong password 
+    - fix flex row mishap for infinite scroll when window is resized
+  - Feed/Dashboard
+    - 
 */
 
 const Landing = () => {
@@ -206,17 +209,37 @@ const Landing = () => {
             <Button size='large' className='h-1/4 w-1/4' variant="outlined" onClick={() => formSubmit('signup')}>Sign Up</Button> 
             <Button className='h-1/4' variant="text" onClick={() => toggleForm('signup')}>Back</Button>            
           </div>
+          <a className='font-display text-left hover:underline cursor-pointer'>Just want to look around? That's cool too</a>
         </form>      
       </div>
     </div>
   )
 } 
 
+const Dashboard = () => {
+  return(
+    <div id='dashboard' className='flex flex-auto justify-center align-center'>
+      <div id='misc' className='flex-1 mr-auto ml-6 h-1/2 justify-right border-slate-400 border-r'>
+        Left panel
+      </div>
+      <div id='feed' className='w-[50rem]'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
+        <div id='book-update-example'> 
+        asdas
+        </div>
+      </div>
+      <div id='user' className='flex-1 ml-auto mr-6 h-1/2 border-slate-400 border-l'>
+        Right
+      </div>
+    </div>
+  )
+}
+
 function App() {
   return (
     <div className="App font-sans flex flex-col h-screen">
       <Header />
-      <Landing />
+      {/* <Landing /> */}
+      <Dashboard />
     </div>
   );
 }
