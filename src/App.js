@@ -3,10 +3,9 @@ import $, { event } from 'jquery';
 import {useState, useEfffect} from 'react';
 import Header from './header.js';
 import Button from '@mui/material/Button';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton } from '@mui/material';
-
+import { Visibility, VisibilityOff } from '@mui/icons-material/';
+import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton, Avatar } from '@mui/material';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 /* Currently
   - Landing
     - adding book covers to display in infinite scroll
@@ -17,6 +16,9 @@ import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, Icon
     - 
 */
 
+/*Landing
+   
+*/
 const Landing = () => {
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
@@ -216,18 +218,34 @@ const Landing = () => {
   )
 } 
 
+/*Dashboard
+
+*/
 const Dashboard = () => {
-  return(
-    <div id='dashboard' className='flex flex-auto justify-center align-center'>
-      <div id='misc' className='flex-1 mr-auto ml-6 h-1/2 justify-right border-slate-400 border-r'>
-        Left panel
-      </div>
-      <div id='feed' className='w-[50rem]'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
-        <div id='book-update-example'> 
-        asdas
+
+
+  const Post = (user, date, book, ) => {
+    return(
+      <div id='book-update-example' className='flex h-auto min-h-32 w-[90%] border-slate-400 border rounded mx-auto'> 
+        <div id='headline' className='flex h-fit w-full'>
+          <Avatar className='m-4'>U</Avatar>
+          <h1 className='flex items-center max-w-[60%] text-left font-sans font-semibold text-lg'>&#123;user&#125; has started reading: &#123;Whatever book&#125;</h1>
+          <h1 className='flex items-center ml-auto mr-4'>&#123;date&#125;</h1>
         </div>
       </div>
-      <div id='user' className='flex-1 ml-auto mr-6 h-1/2 border-slate-400 border-l'>
+    )
+  }
+
+
+  return(
+    <div id='dashboard' className='flex flex-auto justify-center align-center'>
+      <div id='misc' className='flex-1 mr-auto ml-6 h-1/2 justify-right border-400 border-r'>
+        Left panel
+      </div>
+      <div id='feed' className='flex flex-col flex-wrap w-[50rem]'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
+        <Post />
+      </div>
+      <div id='user' className='flex-1 ml-auto mr-6 h-1/2 border-400 border-l'>
         Right
       </div>
     </div>
