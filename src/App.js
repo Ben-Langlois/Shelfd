@@ -218,32 +218,83 @@ const Landing = () => {
   )
 } 
 
+/*Post 
+ Posts used in Dashboard
+ */
+const Post = ({user, type, date, book }) => {
+  const getType = (t) => {
+    switch(t) {
+      case 'current':   
+        return 'is currently reading'
+      case 'started':
+        return 'has started reading'
+      case 'finished':
+        return 'has finished reading'
+    }
+  }
+
+
+  return(
+    <div id='book-update-example' className='flex h-auto min-h-32 w-[90%] border-slate-400 border rounded mx-auto'> 
+      <div id='headline' className='flex h-fit w-full'>
+        <Avatar className='m-4'>{user.avatar}</Avatar>
+        <h1 className='flex items-center max-w-[60%] text-left font-sans font-semibold text-lg'> 
+          {user.name}&nbsp;
+          {getType(type)}&nbsp;
+          {book.name}
+        </h1>
+        <h1 className='flex items-center ml-auto mr-4'>&#123;date&#125;</h1>
+      </div>
+    </div>
+  )
+}
+
 /*Dashboard
 
 */
 const Dashboard = () => {
-
-
-  const Post = (user, date, book, ) => {
-    return(
-      <div id='book-update-example' className='flex h-auto min-h-32 w-[90%] border-slate-400 border rounded mx-auto'> 
-        <div id='headline' className='flex h-fit w-full'>
-          <Avatar className='m-4'>U</Avatar>
-          <h1 className='flex items-center max-w-[60%] text-left font-sans font-semibold text-lg'>&#123;user&#125; has started reading: &#123;Whatever book&#125;</h1>
-          <h1 className='flex items-center ml-auto mr-4'>&#123;date&#125;</h1>
-        </div>
-      </div>
-    )
-  }
-
-
   return(
     <div id='dashboard' className='flex flex-auto justify-center align-center'>
       <div id='misc' className='flex-1 mr-auto ml-6 h-1/2 justify-right border-400 border-r'>
         Left panel
       </div>
-      <div id='feed' className='flex flex-col flex-wrap w-[50rem]'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
-        <Post />
+      <div id='feed' className='flex flex-col flex-wrap w-[50rem] gap-6'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
+        <Post 
+          user={{
+            name: 'Ben',
+            avatar: 'Be'
+          }}
+          type='current'
+          book={{   // replace with book object with api or whatever
+            name: '1984',
+            author: 'George Orwell',
+            cover: null
+          }}
+        />
+        <Post 
+          user={{
+            name: 'Baniel',
+            avatar: 'Ba'
+          }}
+          type='started'
+          book={{   // replace with book object with api or whatever
+            name: 'How to Baniel',
+            author: 'Baniel Banthews',
+            cover: null
+          }}
+        />
+        <Post 
+          user={{
+            name: 'Andrew',
+            avatar: 'A'
+          }}
+          type='finished'
+          book={{   // replace with book object with api or whatever
+            name: 'IT',
+            author: 'Stephen King',
+            cover: null
+          }}
+        />
       </div>
       <div id='user' className='flex-1 ml-auto mr-6 h-1/2 border-400 border-l'>
         Right
