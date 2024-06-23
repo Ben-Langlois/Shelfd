@@ -233,17 +233,28 @@ const Post = ({user, type, date, book }) => {
     }
   }
 
-
   return(
-    <div id='book-update-example' className='flex h-auto min-h-32 w-[90%] border-slate-400 border rounded mx-auto'> 
+    <div id='book-update-example' className='flex flex-col h-auto min-h-32 w-[90%] border-slate-400 border rounded mx-auto'> 
       <div id='headline' className='flex h-fit w-full'>
         <Avatar className='m-4'>{user.avatar}</Avatar>
         <h1 className='flex items-center max-w-[60%] text-left font-sans font-semibold text-lg'> 
-          {user.name}&nbsp;
-          {getType(type)}&nbsp;
+          <a href={{/* link to account */}} className='hover:underline'>{user.name}</a>&nbsp;
+          {getType(type)}:&nbsp;
           {book.name}
         </h1>
         <h1 className='flex items-center ml-auto mr-4'>&#123;date&#125;</h1>
+      </div>
+      <div id='book' className='flex flex-auto pl-4 mb-4'>
+        <div id='cover' className='h-32 w-24 border-red-300 border rounded'>
+          <img src={{/* book cover link */}} alt={book.title}/>
+        </div>
+        <div id='details' className='text-left ml-4'>
+          <h1 id='title' className='text-lg font-bold'>{book.title}</h1>
+          <h1 id='Author'>{book.author}</h1>
+          <h1 id='my-rating'></h1>
+          <h1 id='avg-rating'></h1>    
+          <h1 id='review'></h1>      
+        </div>
       </div>
     </div>
   )
@@ -262,11 +273,11 @@ const Dashboard = () => {
         <Post 
           user={{
             name: 'Ben',
-            avatar: 'Be'
+            avatar: 'Be'  // replace with svg or something for icon
           }}
           type='current'
           book={{   // replace with book object with api or whatever
-            name: '1984',
+            title: '1984',
             author: 'George Orwell',
             cover: null
           }}
@@ -278,7 +289,7 @@ const Dashboard = () => {
           }}
           type='started'
           book={{   // replace with book object with api or whatever
-            name: 'How to Baniel',
+            title: 'How to Baniel',
             author: 'Baniel Banthews',
             cover: null
           }}
@@ -290,7 +301,7 @@ const Dashboard = () => {
           }}
           type='finished'
           book={{   // replace with book object with api or whatever
-            name: 'IT',
+            title: 'IT',
             author: 'Stephen King',
             cover: null
           }}
