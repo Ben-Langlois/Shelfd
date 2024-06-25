@@ -234,7 +234,7 @@ const Post = ({user, type, date, book }) => {
   }
 
   return(
-    <div id='book-update-example' className='flex flex-col h-auto min-h-32 w-[90%] border-slate-400 border rounded mx-auto'> 
+    <div id='book-update-example' className='flex flex-col h-auto {min-h-32 max-h-96} h-fit w-[90%] border-slate-400 border rounded mx-auto'> 
       <div id='headline' className='flex h-fit w-full'>
         <Avatar className='m-4'>{user.avatar}</Avatar>
         <h1 className='flex items-center max-w-[60%] text-left font-sans font-semibold text-lg'> 
@@ -248,12 +248,11 @@ const Post = ({user, type, date, book }) => {
         <div id='cover' className='h-32 w-24 border-red-300 border rounded'>
           <img src={{/* book cover link */}} alt={book.title}/>
         </div>
-        <div id='details' className='text-left ml-4'>
+        <div id='details' className='text-left mx-4 w-fit'>
           <h1 id='title' className='text-lg font-bold'>{book.title}</h1>
           <h1 id='Author'>{book.author}</h1>
-          <h1 id='my-rating'></h1>
-          <h1 id='avg-rating'></h1>    
-          <h1 id='review'></h1>      
+          <h1 id='my-rating'>8/10</h1>
+          <h1 id='review' className='overflow-scroll'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec convallis ex eu turpis ullamcorper pretium. Ut elementum velit ut ligula iaculis molestie ut in nunc. Morbi non varius purus, nec consectetur lacus. Praesent accumsan lacus ullamcorper dui imperdiet, ac porta nisl mattis. Vivamus sit amet sem vitae nulla mattis viverra commodo sed est.</h1>      
         </div>
       </div>
     </div>
@@ -265,11 +264,11 @@ const Post = ({user, type, date, book }) => {
 */
 const Dashboard = () => {
   return(
-    <div id='dashboard' className='flex flex-auto justify-center align-center'>
+    <div id='dashboard' className='flex flex-auto h-full justify-center align-center'>
       <div id='misc' className='flex-1 mr-auto ml-6 h-1/2 justify-right border-400 border-r'>
         Left panel
       </div>
-      <div id='feed' className='flex flex-col flex-wrap w-[50rem] gap-6'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
+      <div id='feed' className='flex flex-col h-full w-[50rem] gap-6 overflow-scroll'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
         <Post 
           user={{
             name: 'Ben',
@@ -295,6 +294,18 @@ const Dashboard = () => {
           }}
         />
         <Post 
+          user={{
+            name: 'Andrew',
+            avatar: 'A'
+          }}
+          type='finished'
+          book={{   // replace with book object with api or whatever
+            title: 'IT',
+            author: 'Stephen King',
+            cover: null
+          }}
+        />
+                <Post 
           user={{
             name: 'Andrew',
             avatar: 'A'
