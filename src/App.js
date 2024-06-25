@@ -4,7 +4,7 @@ import {useState, useEfffect} from 'react';
 import Header from './header.js';
 import Button from '@mui/material/Button';
 import { Visibility, VisibilityOff } from '@mui/icons-material/';
-import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton, Avatar } from '@mui/material';
+import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton, Avatar, Box, LinearProgress } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 /* Currently
   - Landing
@@ -237,7 +237,7 @@ const Post = ({user, type, date, book }) => {
     <div id='book-update-example' className='flex flex-col h-auto {min-h-32 max-h-96} h-fit w-[90%] border-slate-400 border rounded mx-auto'> 
       <div id='headline' className='flex h-fit w-full'>
         <Avatar className='m-4'>{user.avatar}</Avatar>
-        <h1 className='flex items-center max-w-[60%] text-left font-sans font-semibold text-lg'> 
+        <h1 className='flex items-center max-w-[60%] text-left font-display text-xl'> 
           <a href={{/* link to account */}} className='hover:underline'>{user.name}</a>&nbsp;
           {getType(type)}:&nbsp;
           {book.name}
@@ -259,16 +259,49 @@ const Post = ({user, type, date, book }) => {
   )
 }
 
+
+const Shelf = ({name}) => {
+  return(
+    <div className='flex'>
+      <h1>{name}</h1>
+      <button className='ml-auto opacity-50 hover:underline'>View</button>
+    </div>
+  )
+}
 /*Dashboard
 
 */
 const Dashboard = () => {
   return(
-    <div id='dashboard' className='flex flex-auto h-full justify-center align-center'>
-      <div id='misc' className='flex-1 mr-auto ml-6 h-1/2 justify-right border-400 border-r'>
-        Left panel
+    <div id='dashboard' className='flex flex-auto justify-center align-center'>
+      <div id='misc' className='flex-1 ml-auto h-1/2 justify-right border-400 border-r'>
+        <div id='current' className='w-2/3 ml-auto mx-6 pb-6 border-slate-300 border-b'>
+          <h1 className='font-display text-2xl text-left'>Currently Reading</h1>
+          <div className='flex'>
+            <div id='cover' className='h-36 w-28 mt-4 border-red-300 border rounded'></div>
+            <div id='details' className='flex flex-col mt-4 h-full pl-4 text-start'>
+              <h1 id='title'>&#123;Title&#125;</h1>
+              <h1 id='author'>&#123;Author&#125;</h1>
+              <h1 id='start-date'>Since: &#123;Date&#125;</h1>
+            </div>
+          </div>
+        </div>
+        <div id='challenge' className='w-2/3 ml-auto mx-6 py-6 border-slate-300 border-b text-left'>
+          <h1 className='font-display text-2xl '>&#123;Year&#125; Reading Challenge</h1>
+          <h1 className='mt-1'>&#123;# Read&#125; / &#123;Goal&#125;</h1>
+          <Box sx={{ width: '100%' }} thickness={5} className='my-2'>
+            <LinearProgress variant="determinate" value={10} />       {/* value will be replaced w/ func(#read / goal) */}
+          </Box>
+        </div>
+        <div id='bookshelves' className='flex flex-col w-2/3 ml-auto mx-6 py-6 text-left'> {/* will map through users bookshelf array */}
+          <h1 className='font-display text-2xl '>Bookshelves</h1>
+          <Shelf name='Read'/>
+          <Shelf name='Currently Reading'/>
+          <Shelf name='Want to Read'/>
+          <button className='mx-auto hover:underline'>Create Shelf</button>
+        </div>
       </div>
-      <div id='feed' className='flex flex-col h-full w-[50rem] gap-6 overflow-scroll'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
+      <div id='feed' className='flex flex-col h-full w-[50rem] gap-6 mb-[5rem]'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
         <Post 
           user={{
             name: 'Ben',
@@ -318,7 +351,7 @@ const Dashboard = () => {
           }}
         />
       </div>
-      <div id='user' className='flex-1 ml-auto mr-6 h-1/2 border-400 border-l'>
+      <div id='user' className='flex-1 ml-auto h-1/2 border-400 border-l'>
         Right
       </div>
     </div>
