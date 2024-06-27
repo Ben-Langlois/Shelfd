@@ -1,11 +1,11 @@
 import './App.scss';
 import $, { event } from 'jquery';
 import {useState, useEfffect} from 'react';
-import Header from './header.js';
-import Button from '@mui/material/Button';
+import { Header, Footer} from './limbs.js';
+// import Button from '@mui/material/Button';
 import { Visibility, VisibilityOff } from '@mui/icons-material/';
-import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton, Avatar, Box, LinearProgress } from '@mui/material';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton, Avatar, Box, LinearProgress, Button } from '@mui/material';
+
 /* Currently
   - Landing
     - adding book covers to display in infinite scroll
@@ -218,58 +218,6 @@ const Landing = () => {
   )
 } 
 
-/*Post 
- Posts used in Dashboard
- */
-const Post = ({user, type, date, book, review}) => {
-  const getType = (t) => {
-    switch(t) {
-      case 'current':   
-        return 'is currently reading'
-      case 'started':
-        return 'has started reading'
-      case 'finished':
-        return 'has finished reading'
-    }
-  }
-
-  return(
-  <div id='book-update-example' className='flex flex-col h-auto min-h-32 max-h-96 h-fit w-[90%] border-slate-400 border rounded mx-auto'> 
-      <div id='headline' className='flex h-fit w-full'>
-        <Avatar className='m-4'>{user.avatar}</Avatar>
-        <h1 className='flex items-center max-w-[60%] text-left font-display text-xl'> 
-          <a href={{/* link to account */}} className='hover:underline'>{user.name}</a>&nbsp;
-          {getType(type)}:&nbsp;
-          {book.name}
-        </h1>
-        <h1 className='flex items-center ml-auto mr-4'>&#123;date&#125;</h1>
-      </div>
-      <div id='book' className='flex flex-auto pl-4 mb-4'>
-        <div id='cover' className='h-32 w-24 border-red-300 border rounded'>
-          <img src={{/* book cover link */}} alt={book.title}/>
-        </div>
-        <div id='details' className='text-left mx-4 w-fit'>
-          <h1 id='title' className='text-lg font-bold'>{book.title}</h1>
-          <h1 id='Author'>{book.author}</h1>
-          <h1 id='my-rating'>8/10</h1>
-          <h1 id='review' className='overflow-y-auto'>{review}</h1>      
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/*Shelf 
- Shelfs used in misc panel of Dashboard
- */
-const Shelf = ({name}) => {
-  return(
-    <div className='flex'>
-      <h1>{name}</h1>
-      <button className='ml-auto opacity-50 hover:underline'>View</button>
-    </div>
-  )
-}
 /*Dashboard
 
 */
@@ -358,9 +306,7 @@ const Dashboard = () => {
         />
       </div>
       <div id='user' className='flex-1 w-[20rem] ml-auto h-1/2 border-400 border-l text-xl text-left'>
-        <div id='avatar' className='size-[12rem] ml-4 border border-slate-400 rounded-full'>
-          <img src={{}} alt='users avatar'/>
-        </div>
+        <Avatar sx={{ width: '12rem', height: '12rem' }}/>
         <h1 className='ml-4 mt-2 '>&#123;Username&#125;</h1>
         <h1 className='ml-4 mt-2 '>Since &#123;Date joined&#125;</h1>
         <h1 className='ml-4 mt-2 '>&#123;#&#125; Books Read</h1>
@@ -370,19 +316,76 @@ const Dashboard = () => {
     </div>
   )
 }
+/*Post 
+ Posts used in Dashboard
+ */
+const Post = ({user, type, date, book, review}) => {
+  const getType = (t) => {
+    switch(t) {
+      case 'current':   
+        return 'is currently reading'
+      case 'started':
+        return 'has started reading'
+      case 'finished':
+        return 'has finished reading'
+    }
+  }
 
-const Footer = () => {
   return(
-    <div></div>
+  <div id='book-update-example' className='flex flex-col h-auto min-h-32 max-h-96 h-fit w-[90%] border-slate-400 border rounded mx-auto'> 
+      <div id='headline' className='flex h-fit w-full'>
+        <Avatar className='m-4'>{user.avatar}</Avatar>
+        <h1 className='flex items-center max-w-[60%] text-left font-display text-xl'> 
+          <a href={{/* link to account */}} className='hover:underline'>{user.name}</a>&nbsp;
+          {getType(type)}:&nbsp;
+          {book.name}
+        </h1>
+        <h1 className='flex items-center ml-auto mr-4'>&#123;date&#125;</h1>
+      </div>
+      <div id='book' className='flex flex-auto pl-4 mb-4'>
+        <div id='cover' className='h-32 w-24 border-red-300 border rounded'>
+          <img src={{/* book cover link */}} alt={book.title}/>
+        </div>
+        <div id='details' className='text-left mx-4 w-fit'>
+          <h1 id='title' className='text-lg font-bold'>{book.title}</h1>
+          <h1 id='Author'>{book.author}</h1>
+          <h1 id='my-rating'>8/10</h1>
+          <h1 id='review' className='overflow-y-auto'>{review}</h1>      
+        </div>
+      </div>
+    </div>
+  )
+}
+/*Shelf 
+ Shelfs used in misc panel of Dashboard
+ */
+const Shelf = ({name}) => {
+  return(
+    <div className='flex'>
+      <h1>{name}</h1>
+      <button className='ml-auto opacity-50 hover:underline'>View</button>
+    </div>
+  )
+}
+
+/*Profile
+
+*/
+const Profile = () => {
+  return(
+    <div className='flex h-full w-1/2 mx-auto mt-6'>
+      <Avatar sx={{ width: '15rem', height: '15rem' }}/>
+    </div>
   )
 }
 
 function App() {
   return (
-    <div className="App font-sans flex flex-col h-screen">
+    <div className="App font-sans flex flex-col">
       <Header />
       {/* <Landing /> */}
-      <Dashboard />
+      {/* <Dashboard /> */}
+      <Profile />
       <Footer />
     </div>
   );
