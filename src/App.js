@@ -221,7 +221,7 @@ const Landing = () => {
 /*Post 
  Posts used in Dashboard
  */
-const Post = ({user, type, date, book }) => {
+const Post = ({user, type, date, book, review}) => {
   const getType = (t) => {
     switch(t) {
       case 'current':   
@@ -234,7 +234,7 @@ const Post = ({user, type, date, book }) => {
   }
 
   return(
-    <div id='book-update-example' className='flex flex-col h-auto {min-h-32 max-h-96} h-fit w-[90%] border-slate-400 border rounded mx-auto'> 
+  <div id='book-update-example' className='flex flex-col h-auto min-h-32 max-h-96 h-fit w-[90%] border-slate-400 border rounded mx-auto'> 
       <div id='headline' className='flex h-fit w-full'>
         <Avatar className='m-4'>{user.avatar}</Avatar>
         <h1 className='flex items-center max-w-[60%] text-left font-display text-xl'> 
@@ -252,14 +252,16 @@ const Post = ({user, type, date, book }) => {
           <h1 id='title' className='text-lg font-bold'>{book.title}</h1>
           <h1 id='Author'>{book.author}</h1>
           <h1 id='my-rating'>8/10</h1>
-          <h1 id='review' className='overflow-scroll'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec convallis ex eu turpis ullamcorper pretium. Ut elementum velit ut ligula iaculis molestie ut in nunc. Morbi non varius purus, nec consectetur lacus. Praesent accumsan lacus ullamcorper dui imperdiet, ac porta nisl mattis. Vivamus sit amet sem vitae nulla mattis viverra commodo sed est.</h1>      
+          <h1 id='review' className='overflow-y-auto'>{review}</h1>      
         </div>
       </div>
     </div>
   )
 }
 
-
+/*Shelf 
+ Shelfs used in misc panel of Dashboard
+ */
 const Shelf = ({name}) => {
   return(
     <div className='flex'>
@@ -274,8 +276,8 @@ const Shelf = ({name}) => {
 const Dashboard = () => {
   return(
     <div id='dashboard' className='flex flex-auto justify-center align-center'>
-      <div id='misc' className='flex-1 ml-auto h-1/2 justify-right border-400 border-r'>
-        <div id='current' className='w-2/3 ml-auto mx-6 pb-6 border-slate-300 border-b'>
+      <div id='misc' className=' w-[20rem] flex-1 ml-auto h-1/2 justify-right border-400 border-r'>
+        <div id='current' className='w-[20rem] mr-4 ml-auto pb-6 border-slate-300 border-b'>
           <h1 className='font-display text-2xl text-left'>Currently Reading</h1>
           <div className='flex'>
             <div id='cover' className='h-36 w-28 mt-4 border-red-300 border rounded'></div>
@@ -286,14 +288,14 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div id='challenge' className='w-2/3 ml-auto mx-6 py-6 border-slate-300 border-b text-left'>
+        <div id='challenge' className='w-[20rem] mr-4 ml-auto py-6 border-slate-300 border-b text-left'>
           <h1 className='font-display text-2xl '>&#123;Year&#125; Reading Challenge</h1>
           <h1 className='mt-1'>&#123;# Read&#125; / &#123;Goal&#125;</h1>
           <Box sx={{ width: '100%' }} thickness={5} className='my-2'>
             <LinearProgress variant="determinate" value={10} />       {/* value will be replaced w/ func(#read / goal) */}
           </Box>
         </div>
-        <div id='bookshelves' className='flex flex-col w-2/3 ml-auto mx-6 py-6 text-left'> {/* will map through users bookshelf array */}
+        <div id='bookshelves' className='flex flex-col w-[20rem] mr-4 ml-auto py-6 text-left'> {/* will map through users bookshelf array */}
           <h1 className='font-display text-2xl '>Bookshelves</h1>
           <Shelf name='Read'/>
           <Shelf name='Currently Reading'/>
@@ -312,8 +314,9 @@ const Dashboard = () => {
             title: '1984',
             author: 'George Orwell',
             cover: null
-          }}
-        />
+          }} 
+          review='Lorem ipsum dolor sit amet, conseasdasdasdasdasdasdasdasdasdasdasdasd sdasdasdasdasdasdasdasd asdasdasdasd asdasdasdsdasdasda asdasda sdasdasdasd asdasdasdasdas asdasdasdasd asdasdasdsdasdasda asdasda sdasdasdasd asdasdasdasdasd asdasdasda asdasdasdasdasdactetur adipiscing elit. Donec convallis ex eu turpis ullamcorper pretium. Ut elementum velit ut ligula iaculis molestie ut in nunc. Morbi non varius purus, nec consectetur lacus. Praesent accumsan lacus ullamcorper dui imperdiet, ac porta nisl mattis. Vivamus sit amet sem vitae nulla mattis viverra commodo sed est.'
+        />{/* limit review to like 500 characters or something*/}
         <Post 
           user={{
             name: 'Baniel',
@@ -325,6 +328,7 @@ const Dashboard = () => {
             author: 'Baniel Banthews',
             cover: null
           }}
+          review=''
         />
         <Post 
           user={{
@@ -337,8 +341,9 @@ const Dashboard = () => {
             author: 'Stephen King',
             cover: null
           }}
+          review=''
         />
-                <Post 
+        <Post 
           user={{
             name: 'Andrew',
             avatar: 'A'
@@ -349,12 +354,26 @@ const Dashboard = () => {
             author: 'Stephen King',
             cover: null
           }}
+          review=''
         />
       </div>
-      <div id='user' className='flex-1 ml-auto h-1/2 border-400 border-l'>
-        Right
+      <div id='user' className='flex-1 w-[20rem] ml-auto h-1/2 border-400 border-l text-xl text-left'>
+        <div id='avatar' className='size-[12rem] ml-4 border border-slate-400 rounded-full'>
+          <img src={{}} alt='users avatar'/>
+        </div>
+        <h1 className='ml-4 mt-2 '>&#123;Username&#125;</h1>
+        <h1 className='ml-4 mt-2 '>Since &#123;Date joined&#125;</h1>
+        <h1 className='ml-4 mt-2 '>&#123;#&#125; Books Read</h1>
+        <h1 className='ml-4 mt-2 '>&#123;#&#125; Followers</h1>
+        <h1 className='ml-4 mt-2 '>&#123;#&#125; Following</h1>
       </div>
     </div>
+  )
+}
+
+const Footer = () => {
+  return(
+    <div></div>
   )
 }
 
@@ -364,6 +383,7 @@ function App() {
       <Header />
       {/* <Landing /> */}
       <Dashboard />
+      <Footer />
     </div>
   );
 }
