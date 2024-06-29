@@ -3,7 +3,7 @@ import $, { event } from 'jquery';
 import {useState, useEfffect} from 'react';
 import { Header, Footer} from './limbs.js';
 // import Button from '@mui/material/Button';
-import { Visibility, VisibilityOff } from '@mui/icons-material/';
+import { Book, Visibility, VisibilityOff } from '@mui/icons-material/';
 import { TextField, FormControl, InputLabel, InputAdornment, OutlinedInput, IconButton, Avatar, Box, LinearProgress, Button } from '@mui/material';
 
 /* Currently
@@ -243,13 +243,7 @@ const Dashboard = () => {
             <LinearProgress variant="determinate" value={10} />       {/* value will be replaced w/ func(#read / goal) */}
           </Box>
         </div>
-        <div id='bookshelves' className='flex flex-col w-[20rem] mr-4 ml-auto py-6 text-left'> {/* will map through users bookshelf array */}
-          <h1 className='font-display text-2xl '>Bookshelves</h1>
-          <Shelf name='Read'/>
-          <Shelf name='Currently Reading'/>
-          <Shelf name='Want to Read'/>
-          <button className='mx-auto hover:underline'>Create Shelf</button>
-        </div>
+        <BookShelves />
       </div>
       <div id='feed' className='flex flex-col h-full w-[50rem] gap-6 mb-[5rem]'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
         <Post 
@@ -306,7 +300,7 @@ const Dashboard = () => {
         />
       </div>
       <div id='user' className='flex-1 w-[20rem] ml-auto h-1/2 border-400 border-l text-xl text-left'>
-        <Avatar sx={{ width: '12rem', height: '12rem' }}/>
+        <Avatar sx={{ width: '12rem', height: '12rem' }} className='m-4'/>
         <h1 className='ml-4 mt-2 '>&#123;Username&#125;</h1>
         <h1 className='ml-4 mt-2 '>Since &#123;Date joined&#125;</h1>
         <h1 className='ml-4 mt-2 '>&#123;#&#125; Books Read</h1>
@@ -356,17 +350,59 @@ const Post = ({user, type, date, book, review}) => {
     </div>
   )
 }
-/*Shelf 
- Shelfs used in misc panel of Dashboard
- */
-const Shelf = ({name}) => {
+
+
+const BookShelves = () => {
+  const Shelf = ({name}) => {
+    return(
+      <li className='flex'>
+        <h1>{name}</h1>
+        <button className='ml-auto opacity-50 hover:underline'>View</button>
+      </li>
+    )
+  }
+  const InputShelf = () => {
+    const create = () => {
+
+    }
+
+    return(
+      <li id='InputShelf' class='flex'>
+        <input id='tempInput' type='text' onKeyDown={(event) => event.key === 'Enter' ? create(event) : null} /> 
+        <button class='ml-auto opacity-50 hover:underline'>Add</button>
+      </li>
+    )
+  }
+
+  const tempShelves = [<Shelf name='Read'/>, <Shelf name='Currently Reading'/>, <Shelf name='Want to Read'/>]; // replace this with proped data from user object
+  const [shelves, setShelves] = useState([...tempShelves]);
+
+  const addShelf = () => {
+    $('#BookShelves > #addShelf').toggle('disabled');   //disable button
+    $("#BookShelves > ol").append(<InputShelf />)  // appending a shelf with input  
+    
+    $('InputShelf > #tempInput').focus(); // focus
+    let name = 'test'; // gather input
+    // setShelves([...shelves, <Shelf name={name}/>])    // adding said input shelf's input as an actual shelf, to state
+  }
+  
+
+
   return(
-    <div className='flex'>
-      <h1>{name}</h1>
-      <button className='ml-auto opacity-50 hover:underline'>View</button>
+    <div id='BookShelves' className='flex flex-col w-[20rem] mr-4 ml-auto py-6 text-left'> {/* will map through users bookshelf array */}
+      <h1 className='font-display text-2xl '>Bookshelves</h1>
+      <ol id='list'>
+        {
+          shelves.map((e, i) => {
+            return e;
+          })
+        }
+      </ol>
+      <button id='addShelf' className='mx-auto hover:underline' onClick={() => addShelf()}>Create Shelf</button>
     </div>
   )
 }
+
 
 /*Profile
 
@@ -384,8 +420,8 @@ function App() {
     <div className="App font-sans flex flex-col">
       <Header />
       {/* <Landing /> */}
-      {/* <Dashboard /> */}
-      <Profile />
+      <Dashboard />
+      {/* <Profile /> */}
       <Footer />
     </div>
   );
