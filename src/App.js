@@ -1,6 +1,6 @@
 import './App.scss';
 import $, { event } from 'jquery';
-import {useState, useEfffect} from 'react';
+import {useState, useEffect} from 'react';
 import { Header, Footer} from './limbs.js';
 // import Button from '@mui/material/Button';
 import { Book, Visibility, VisibilityOff } from '@mui/icons-material/';
@@ -352,42 +352,16 @@ const Post = ({user, type, date, book, review}) => {
 }
 
 
+
 const BookShelves = () => {
-  const Shelf = ({name}) => {
-    return(
-      <li className='flex'>
-        <h1>{name}</h1>
-        <button className='ml-auto opacity-50 hover:underline'>View</button>
-      </li>
-    )
-  }
-  const InputShelf = () => {
-    const create = () => {
-
-    }
-
-    return(
-      <li id='InputShelf' class='flex'>
-        <input id='tempInput' type='text' onKeyDown={(event) => event.key === 'Enter' ? create(event) : null} /> 
-        <button class='ml-auto opacity-50 hover:underline'>Add</button>
-      </li>
-    )
-  }
-
-  const tempShelves = [<Shelf name='Read'/>, <Shelf name='Currently Reading'/>, <Shelf name='Want to Read'/>]; // replace this with proped data from user object
+  const tempShelves = [<Shelf input='Read'/>, <Shelf input='Currently Reading'/>, <Shelf input='Want to Read'/>]; // replace this with proped data from user object
   const [shelves, setShelves] = useState([...tempShelves]);
 
   const addShelf = () => {
     $('#BookShelves > #addShelf').toggle('disabled');   //disable button
-    $("#BookShelves > ol").append(<InputShelf />)  // appending a shelf with input  
-    
-    $('InputShelf > #tempInput').focus(); // focus
-    let name = 'test'; // gather input
-    // setShelves([...shelves, <Shelf name={name}/>])    // adding said input shelf's input as an actual shelf, to state
+    // $('#BookShelves > ol:last-child').append(<Shelf name='test'/>)  // appending a shelf with input  
+    setShelves([...shelves, <Shelf input='' />]) 
   }
-  
-
-
   return(
     <div id='BookShelves' className='flex flex-col w-[20rem] mr-4 ml-auto py-6 text-left'> {/* will map through users bookshelf array */}
       <h1 className='font-display text-2xl '>Bookshelves</h1>
@@ -403,6 +377,33 @@ const BookShelves = () => {
   )
 }
 
+const Shelf = ({input}) => {
+  const [name, setName] = useState(input ? input : '');
+
+  useEffect(() => {
+    if(!name){
+      $('#shelf-input').focus(); // focus on input
+    }
+  }, [name]);
+
+  return(
+    name ? (
+      <li className='flex'>
+        <h1 className='overflow-hidden'>{name}</h1>
+        <button className='ml-auto opacity-50 hover:underline'>View</button>
+      </li>
+    ) : (
+      <li className='flex'>
+        <input id='shelf-input' type='text' className='' onKeyDown={(event) => { if(event.key === 'Enter') {
+          setName(event.target.value)
+          $('#BookShelves > #addShelf').toggle('disabled');   // enable button
+          // make sure to push array to backend aka finalizing creation
+        }}}/>
+        <button className='ml-auto opacity-50 hover:underline' onClick={{}}>X</button>  {/* this button is supposed to remove itself from the array */}
+      </li>
+    )
+  )
+}
 
 /*Profile
 
