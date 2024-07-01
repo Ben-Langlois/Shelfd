@@ -351,33 +351,7 @@ const Post = ({user, type, date, book, review}) => {
   )
 }
 
-
-
-const BookShelves = () => {
-  const tempShelves = [<Shelf input='Read'/>, <Shelf input='Currently Reading'/>, <Shelf input='Want to Read'/>]; // replace this with proped data from user object
-  const [shelves, setShelves] = useState([...tempShelves]);
-
-  const addShelf = () => {
-    $('#BookShelves > #addShelf').toggle('disabled');   //disable button
-    // $('#BookShelves > ol:last-child').append(<Shelf name='test'/>)  // appending a shelf with input  
-    setShelves([...shelves, <Shelf input='' />]) 
-  }
-  return(
-    <div id='BookShelves' className='flex flex-col w-[20rem] mr-4 ml-auto py-6 text-left'> {/* will map through users bookshelf array */}
-      <h1 className='font-display text-2xl '>Bookshelves</h1>
-      <ol id='list'>
-        {
-          shelves.map((e, i) => {
-            return e;
-          })
-        }
-      </ol>
-      <button id='addShelf' className='mx-auto hover:underline' onClick={() => addShelf()}>Create Shelf</button>
-    </div>
-  )
-}
-
-const Shelf = ({input}) => {
+const Shelf = ({input, key, array}) => {
   const [name, setName] = useState(input ? input : '');
 
   useEffect(() => {
@@ -390,7 +364,7 @@ const Shelf = ({input}) => {
     name ? (
       <li className='flex'>
         <h1 className='overflow-hidden'>{name}</h1>
-        <button className='ml-auto opacity-50 hover:underline'>View</button>
+        <h1 className='ml-auto opacity-50'>#</h1>
       </li>
     ) : (
       <li className='flex'>
@@ -399,9 +373,39 @@ const Shelf = ({input}) => {
           $('#BookShelves > #addShelf').toggle('disabled');   // enable button
           // make sure to push array to backend aka finalizing creation
         }}}/>
-        <button className='ml-auto opacity-50 hover:underline' onClick={{}}>X</button>  {/* this button is supposed to remove itself from the array */}
+        <button className='ml-auto opacity-50 hover:underline' onClick={() => {
+          // remove this shelf from backend 
+        }}>X</button>  {/* this button is supposed to remove itself from the array */}
       </li>
     )
+  )
+}
+
+const tempShelves = [<Shelf input='Read'/>, <Shelf input='Currently Reading'/>, <Shelf input='Want to Read'/>, <Shelf input='Favourites'/>]; // replace this with proped data from user object
+
+const BookShelves = () => {
+  const [shelves, setShelves] = useState([...tempShelves]);
+
+  const addShelf = () => {
+    $('#BookShelves > #addShelf').toggle('disabled');                  // disable button
+    setShelves([...shelves, <Shelf input='' array={shelves}/>]);       // add to state array
+  }
+
+  return(
+    <div id='BookShelves' className='flex flex-col w-[20rem] mr-4 ml-auto py-6 text-left'> {/* will map through users bookshelf array */}
+      <div id='header' className='flex'>
+        <h1 className='font-display text-2xl '>Bookshelves</h1>
+        <a href='#' className='ml-auto opacity-50 hover:underline'>View</a>     {/* link to profile page with bookshelves */}   
+      </div>
+      <ol id='list'>
+        {
+          shelves.map((e, i) => {
+            return e;
+          })
+        }
+      </ol>
+      <button id='addShelf' className='mx-auto hover:underline' onClick={() => addShelf()}>Create Shelf</button>
+    </div>
   )
 }
 
