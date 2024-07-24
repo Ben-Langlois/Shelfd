@@ -245,7 +245,7 @@ const Dashboard = () => {
         </div>
         <BookShelves />
       </div>
-      <div id='feed' className='flex flex-col h-full w-[50rem] gap-6 mb-[5rem]'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
+      <div id='feed' className='flex flex-col h-fit w-[50rem] gap-6 {mb-[5rem]}'> {/* filled w/ just examples of different feed posts, will replace with func interacting w/ backend */}
         <Post 
           user={{
             name: 'Ben',
@@ -414,7 +414,7 @@ const BookShelves = () => {
 */
 const Profile = () => {
   return(
-    <div className='flex h-full w-1/2 mx-auto mt-6'>
+    <div className='flex flex-auto  w-1/2 mx-auto mt-6'>
       <Avatar sx={{ width: '15rem', height: '15rem' }}/>
     </div>
   )
@@ -422,11 +422,11 @@ const Profile = () => {
 
 function App() {
   return (
-    <div className="App font-sans flex flex-col">
+    <div className="App font-sans h-screen flex flex-col">
       <Header />
       {/* <Landing /> */}
-      <Dashboard />
-      {/* <Profile /> */}
+      {/* <Dashboard /> */}
+      <Profile />
       <Footer />
     </div>
   );
