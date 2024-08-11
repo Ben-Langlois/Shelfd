@@ -414,8 +414,22 @@ const BookShelves = () => {
 */
 const Profile = () => {
   return(
-    <div className='flex flex-auto  w-1/2 mx-auto mt-6'>
-      <Avatar sx={{ width: '15rem', height: '15rem' }}/>
+    <div className='flex flex-auto  w-1/2 mx-auto mt-6 relative'>
+        <Avatar sx={{ width: '12rem', height: '12rem' }}/>
+        <div id='details'>
+
+        </div>
+        <div id='social' className='flex flex-col absolute w-1/3 top-0 right-[-35%] justify-start text-start'>
+          <h1 className=' text-xl'>Following</h1>
+          <div id='following' className='flex flex-row gap-1 mb-4'> {/* this would be backend mumbo jumbo */}
+            <Avatar className=''>U</Avatar>
+          </div>
+          <h1 className=' text-xl'>Followers</h1>
+          <div id='followers' className='flex flex-row gap-1'> {/* this would be backend mumbo jumbo */}
+            <Avatar className=''>U</Avatar>
+            <Avatar className=''>U</Avatar>
+          </div>
+        </div>
     </div>
   )
 }
