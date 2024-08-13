@@ -423,7 +423,7 @@ const Profile = () => {
             <h1 className='text-xl'>Books Read: &#123;#&#125;</h1>
             <p className='text-xl overflow-auto max-h-40'>Bio: &#123;lorem epsum etc&#125;</p>
           </div>
-        </div>
+        </div> {/* display-shelves needs to fit somewhere in main but break flex so its under */}
         <div id='display-shelves'>
 
         </div>
