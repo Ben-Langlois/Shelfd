@@ -415,8 +415,16 @@ const BookShelves = () => {
 const Profile = () => {
   return(
     <div className='flex flex-auto  w-1/2 mx-auto mt-6 relative'>
-        <Avatar sx={{ width: '12rem', height: '12rem' }}/>
-        <div id='details'>
+        <div id='main' className='flex'>
+          <Avatar sx={{ width: '12rem', height: '12rem' }}/>
+          <div id='main-details' className='ml-6 text-left h-fit'> {/* would be profile spec data */}
+            <h1 className='text-xl'>&#123;Username&#125;</h1>
+            <h1 className='text-xl'>Joined: &#123;date&#125;</h1>
+            <h1 className='text-xl'>Books Read: &#123;#&#125;</h1>
+            <p className='text-xl overflow-auto max-h-40'>Bio: &#123;lorem epsum etc&#125;</p>
+          </div>
+        </div>
+        <div id='display-shelves'>
 
         </div>
         <div id='social' className='flex flex-col absolute w-1/3 top-0 right-[-35%] justify-start text-start'>
