@@ -382,7 +382,6 @@ const Shelf = ({input, key, array}) => {
 }
 
 const tempShelves = [<Shelf input='Read'/>, <Shelf input='Currently Reading'/>, <Shelf input='Want to Read'/>, <Shelf input='Favourites'/>]; // replace this with proped data from user object
-
 const BookShelves = () => {
   const [shelves, setShelves] = useState([...tempShelves]);
 
@@ -413,9 +412,12 @@ const BookShelves = () => {
 
 */
 const Profile = () => {
+  const [shelves, setShelves] = useState([{title: 'Favourite', books: []}, {title: 'Read', books: []}, {title: 'Currently Reading', books: []}, {title: 'Want to Read', books: []}])
+
+
   return(
-    <div className='flex flex-auto  w-1/2 mx-auto mt-6 relative'>
-        <div id='main' className='flex'>
+    <div className='flex flex-col flex-auto  w-1/2 mx-auto mt-6 relative'>
+        <div id='main' className='flex mb-6'>
           <Avatar sx={{ width: '12rem', height: '12rem' }}/>
           <div id='main-details' className='ml-6 text-left h-fit'> {/* would be profile spec data */}
             <h1 className='text-xl'>&#123;Username&#125;</h1>
@@ -423,9 +425,28 @@ const Profile = () => {
             <h1 className='text-xl'>Books Read: &#123;#&#125;</h1>
             <p className='text-xl overflow-auto max-h-40'>Bio: &#123;lorem epsum etc&#125;</p>
           </div>
-        </div> {/* display-shelves needs to fit somewhere in main but break flex so its under */}
-        <div id='display-shelves'>
+        </div> 
+        <div id='display-shelves' className='flex flex-col text-left'>
+        { // this would ref the state object that <BookShelves /> is getting but NOT as <Shelf />s 
+            // but for now just an array of titles (in local state)
+          // what if bookshelf is empty? do i still want to show it?
+            // I think thats a 'solve once I do backend' problem, cause the object just doesnt exist rn
+          shelves.map((e, i) => {
+            return (
+              <div id='displayShelf'>
+                <h1 className='text-xl border-b mb-6'>{e.title}</h1>
+                {
+                  e.books.map(() => {
+                    <div id='displayCover'>
 
+                    </div>
+                  })
+                }
+              </div>
+            )
+          })
+
+        }
         </div>
         <div id='social' className='flex flex-col absolute w-1/3 top-0 right-[-35%] justify-start text-start'>
           <h1 className=' text-xl'>Following</h1>
