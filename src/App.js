@@ -412,7 +412,8 @@ const BookShelves = () => {
 
 */
 const Profile = () => {
-  const [shelves, setShelves] = useState([{title: 'Favourite', books: []}, {title: 'Read', books: []}, {title: 'Currently Reading', books: []}, {title: 'Want to Read', books: []}])
+  // this would be set with backend
+  const [shelves, setShelves] = useState([{title: 'Favourite', books: [{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}]}, {title: 'Read', books: []}, {title: 'Currently Reading', books: []}, {title: 'Want to Read', books: []}])
 
 
   return(
@@ -435,12 +436,15 @@ const Profile = () => {
             return (
               <div id='displayShelf'>
                 <h1 className='text-xl border-b mb-6'>{e.title}</h1>
-                {
-                  e.books.map(() => {
-                    <div id='displayCover'>
+                {       
+                foreach(book in e.books){
 
-                    </div>
-                  })
+                }           
+                  // e.books.map((book) => {
+                  //   <div id='displayCover' className='h-16 w-8 border border-red'>
+                  //     {book.title}
+                  //   </div>
+                  // })
                 }
               </div>
             )
