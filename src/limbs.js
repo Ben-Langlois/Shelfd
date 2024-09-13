@@ -21,9 +21,9 @@ export const Header = () => {
 export const Footer = () => {
     return(
         <footer className='flex flex-initial opacity-70 my-6 gap-6 justify-center'>
-            <a href='https://github.com/Ben-Langlois/Shelfd'><GitHubIcon className='hover:scale-110' fontSize='large'/></a>
-            <h1 className='self-center'>Shelfd 2024</h1>
-            <a href='https://www.linkedin.com/in/benjaminlanglois/'><LinkedInIcon className='hover:scale-110' fontSize='large'/></a>
+            <a href='https://github.com/Ben-Langlois/Shelfd'><GitHubIcon className='hover:scale-110' fontSize='small'/></a>
+            <h1 className='place-self-center'>Shelfd 2024</h1>
+            <a href='https://www.linkedin.com/in/benjaminlanglois/'><LinkedInIcon className='hover:scale-110' fontSize='small'/></a>
         </footer>
     )
 }

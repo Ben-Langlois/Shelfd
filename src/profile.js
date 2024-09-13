@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 */
 export const Profile = () => {
   // this would be set with backend
-  const [shelves, setShelves] = useState([{title: 'Favourite', books: [{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}]}, {title: 'Read', books: []}, {title: 'Currently Reading', books: []}, {title: 'Want to Read', books: []}])
+  const [shelves, setShelves] = useState([{title: 'Favourite', books: [{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'},{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}, {isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}, {isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}, {isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}, {isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}]}, {title: 'Read', books: [{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'},{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}, {isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}]}, {title: 'Currently Reading', books: []}, {title: 'Want to Read', books: [{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'},{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}, {isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'},{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'},{isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}, {isbn: null, title: '1984'}, {isbn: null, title: 'to catch a bird'}]}])
 
   return(
     <div className='flex flex-col flex-auto  w-1/2 mx-auto mt-6 relative'>
@@ -27,6 +27,7 @@ export const Profile = () => {
             // but for now just an array of titles (in local state)
           // what if bookshelf is empty? do i still want to show it?
             // I think thats a 'solve once I do backend' problem, cause the object just doesnt exist rn
+          // Im not going to add a way to create more shelves (yet)
           shelves.map((e, i) => {
             return (
               <DisplayShelf title={e.title} books={e.books} />
@@ -56,7 +57,7 @@ const DisplayShelf = ( {title, books} ) => {
   return (
     <div id='displayShelf' className='flex flex-col gap-y-4 mb-6'>
       <h1 className='text-xl border-b'>{title}</h1>
-      <div id='books' className='flex gap-6'>
+      <div id='books' className='flex flex-wrap gap-6'>
         {       
           books.map((book) => {
             return(
