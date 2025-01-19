@@ -18,8 +18,8 @@ function App() {
   return (
     <div className="App font-sans h-screen flex flex-col">
       <Header />
-      <Landing />
-      {/* <Dashboard /> */}
+      {/* <Landing /> */}
+      <Dashboard />
       {/* <Profile /> */}
       <Footer />
     </div>
