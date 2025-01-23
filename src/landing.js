@@ -18,7 +18,8 @@ export const Landing = () => {
     event.preventDefault();
   };
 
-  const bookStyle = 'outline outline-red-400 rounded w-1/6 h-1/5';
+  const bookStyle = 'outline outline-red-400 rounded w-1/5 h-1/6 basis-[25%] sm:basis-auto';
+  const bookContainer = 'flex flex-wrap absolute top-0 right-0 h-full w-full justify-between'
 
   /* toggleForm(form)
      form: the name/id of current form
@@ -82,10 +83,9 @@ export const Landing = () => {
   }
 
   return(
-    <div id='landing' className='flex flex-auto p-6'>
-      <div id='scroll-container' className='flex flex-col relative h-full w-2/4 pt-1 overflow-hidden justify-center content-center'>
-        <div id='primary' className='flex flex-wrap absolute top-0 right-0 h-full justify-around gap-6 pt-3'> {/* grid of books, maybe 'featured' books? */}
-          <div className={bookStyle} >&nbsp;</div>  
+    <div id='landing' className='flex flex-auto py-6 '>
+      <div id='scroll-container' className='flex flex-col relative h-full w-full pt-1 overflow-hidden justify-center content-center m:w-2/4'>
+        <div id='primary' className={bookContainer}> {/* grid of books, maybe 'featured' books? */}
           <div className={bookStyle} >&nbsp;</div>  
           <div className={bookStyle} >&nbsp;</div>  
           <div className={bookStyle} >&nbsp;</div>  
@@ -111,8 +111,7 @@ export const Landing = () => {
           <div className={bookStyle} >&nbsp;</div>  
           <div className={bookStyle} >&nbsp;</div>  
         </div>
-        <div id='secondary' className='flex flex-wrap absolute top-full right-0 h-full justify-around gap-6'> {/* grid of books, maybe 'featured' books? */}
-          <div className={bookStyle} >&nbsp;</div>  
+        <div id='secondary' className={bookContainer}> {/* grid of books, maybe 'featured' books? */}
           <div className={bookStyle} >&nbsp;</div>  
           <div className={bookStyle} >&nbsp;</div>  
           <div className={bookStyle} >&nbsp;</div>  
@@ -139,13 +138,12 @@ export const Landing = () => {
           <div className={bookStyle} >&nbsp;</div>  
         </div>
       </div>
-      <div id='action-container' className='w-2/4 content-center text-left p-6 m-6 border-400 border-l transition-opacity duration-1000'> {/* login/register buttons (that lead to form) */}
+      {/* <div id='action-container' className='w-2/4 content-center text-left p-6 m-6 border-400 border-l transition-opacity duration-1000'>}
         <div id='calltoaction' className='opacity-100 mb-6'>
           <h1 className='text-5xl font-semibold font-display w-[40rem]'>Discover, Discuss, and Track your next reads along tens of other users</h1>
         </div>
-        <form id='login' className='flex flex-col flex-wrap gap-6'> {/* login form to display */}
+        <form id='login' className='flex flex-col flex-wrap gap-6'>
           <TextField id='email' className='w-[32rem]' error={emailError} required label="Email" variant="outlined" />
-          {/* <TextField id='password' required label="Password" variant="outlined" /> */}
           <FormControl  variant="outlined" className='w-[32rem]' error={passError} required >
             <InputLabel htmlFor="password-label">Password</InputLabel>
             <OutlinedInput
@@ -171,7 +169,7 @@ export const Landing = () => {
             <Button className='h-1/4' variant="text" onClick={() => toggleForm('login')}>Dont have an account?</Button>            
           </div>
         </form>
-        <form id='signup' className='hidden flex flex-col flex-wrap gap-6'> {/* signup form to display */}
+        <form id='signup' className='hidden flex flex-col flex-wrap gap-6'> 
           <TextField id='firstName' error={nameError} required label="First Name" className='w-[32rem]' variant="outlined" />
           <TextField id='email' error={emailError} required label="Email" className='w-[32rem]' variant="outlined" />
           <FormControl  variant="outlined" className='w-[32rem]' error={passError} required >
@@ -200,7 +198,7 @@ export const Landing = () => {
           </div>
           <a className='font-display text-left hover:underline cursor-pointer'>Just want to look around? That's cool too</a>
         </form>      
-      </div>
+      </div> */}
     </div>
   )
 } 

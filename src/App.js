@@ -17,7 +17,7 @@ import { Dashboard } from './dashboard.js';
 function App() {
   return (
     <div className="App font-sans h-screen flex flex-col">
-      {/* <Landing /> */}
+      <Landing />
       {/* <Dashboard /> */}
       {/* <Profile /> */}
     </div>
